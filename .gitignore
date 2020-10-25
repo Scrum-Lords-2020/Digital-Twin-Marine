@@ -2,6 +2,10 @@
 
 # dependencies
 /node_modules
+<<<<<<< HEAD
+=======
+/client/node_modules
+>>>>>>> fb4544bb82b8d90decb3358d09223bee156fdf5d
 /.pnp
 .pnp.js
 
@@ -10,6 +14,10 @@
 
 # production
 /build
+<<<<<<< HEAD
+=======
+client/build
+>>>>>>> fb4544bb82b8d90decb3358d09223bee156fdf5d
 
 # misc
 .DS_Store
@@ -17,7 +25,44 @@
 .env.development.local
 .env.test.local
 .env.production.local
+<<<<<<< HEAD
+=======
+/server/config/config.js
+>>>>>>> fb4544bb82b8d90decb3358d09223bee156fdf5d
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
+=======
+
+# IDE ignores
+*.sublime*
+
+### SublimeText ###
+# Cache files for Sublime Text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+
+# Workspace files are user-specific
+*.sublime-workspace
+
+# Project files should be checked into the repository, unless a significant
+# proportion of contributors will probably not be using Sublime Text
+# *.sublime-project
+
+### VisualStudioCode ###
+.vscode/*
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
+### WebStorm ###
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+# User-specific stuff
+.idea/*
+>>>>>>> fb4544bb82b8d90decb3358d09223bee156fdf5d
