@@ -1,0 +1,66 @@
+h1{
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size:  2rem;
+}
+p{
+  text-align: center;
+  font-size: 14px;
+}
+
+Form{
+  margin: auto;
+  display: block;
+  width: 50%;
+  font-size: 15px;
+}
+.form-control{
+  height: 50px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-text{
+  font-family: 'Poppins', sans-serif;
+  float: right;
+  padding: 12px 0 12px 0;
+}
+
+.form-text:hover{
+  text-decoration: underline;
+}
+@media only screen and (max-width: 991px){
+  Form{
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 750px){
+  Form{
+    width: 98%;
+  }
+}
+
+
+
+/* Fonts */
+@font-face {
+    font-family: 'Michroma-Regular';
+    src: url('../fonts/Michroma-Regular.ttf') format('truetype'),
+  }
+  
+  @font-face {
+    font-family: 'Michroma-Italian';
+    src: url('../fonts/michroma-v10-latin-regular.eot'),
+          url('../fonts/michroma-v10-latin-regular.svg') format('svg'),
+          url('../fonts/michroma-v10-latin-regular.ttf') format('truetype'),
+          url('../fonts/michroma-v10-latin-regular.woff') format('woff'),
+          url('../fonts/michroma-v10-latin-regular.woff2') format('woff2');
+  }
+  
+  @font-face {
+    font-family: "Roboto-Black";
+    src: url('../fonts/Roboto/Roboto-Black.ttf');
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Poppins&display=swap');
+
