@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
-import { Container, Form, FormControl, InputGroup, Nav, Navbar, Button, NavDropdown } from 'react-bootstrap';
+import { 
+    Container, 
+    Form, 
+    FormControl, 
+    InputGroup, 
+    Nav, 
+    Navbar, 
+    Button, 
+    NavDropdown,
+    Card,
+    CardColumns
+} from 'react-bootstrap';
 
 class Dashboard extends Component {
     render() {
         return(
             <Container>
                 <FilterBar />
+                <CardView vessels={VESSELS}/>
             </Container>
         );
     }
@@ -43,5 +55,39 @@ class FilterBar extends Component {
         );
     }
 }
+
+class CardView extends Component {
+    render() {
+        const cards = VESSELS.map((vessel) => <VesselCard vessel={vessel}/>);
+        return (
+            <CardColumns>
+                {cards}
+            </CardColumns>
+        );
+    }
+}
+
+class VesselCard extends Component {
+    render() {
+        return (
+            <Card style={{ width: '18rem' }}>
+                <Card.Body>
+                    <Card.Title>{this.props.vessel.name}</Card.Title>
+                    <Card.Text>IMO #: {this.props.vessel.imo}</Card.Text>
+                    <Card.Text>Service Type: {this.props.vessel.type}</Card.Text>
+                    <Card.Text>Files: {this.props.vessel.fileCount} attachments</Card.Text>
+                </Card.Body>
+            </Card>
+        );
+    }
+}
+
+const VESSELS = [
+    {name: 'USS Foo', imo: 123456, type: 'Marketing', fileCount: 3},
+    {name: 'USS Bar', imo: 325234, type: 'Fun boat', fileCount: 4},
+    {name: 'USS Bin', imo: 234567, type: 'Cargo', fileCount: 2},
+    {name: 'USS Baz', imo: 765348, type: 'Marketing', fileCount: 3},
+    {name: 'USS Far', imo: 832341, type: 'Fishing', fileCount: 0}
+];
 
 export default Dashboard;
