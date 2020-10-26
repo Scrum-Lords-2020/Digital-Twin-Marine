@@ -7,6 +7,10 @@ const users = require("./routes/api/users");
 
 const app = express();
 
+//Needed for client to interact with server
+var cors = require('cors');
+app.use(cors());
+
 app.use(
     bodyParser.urlencoded({
         extended: false
