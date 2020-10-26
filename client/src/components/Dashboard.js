@@ -46,9 +46,9 @@ class FilterBar extends Component {
                 </Form>
                 <Nav>
                     <NavDropdown title='Filter By' id='filterBy'>
-                        <NavDropdown.Item eventKey="size">Size</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="age">Age</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="status">Status</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="name">Name</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="imo">IMO</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="type">Type</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
             </Navbar>
