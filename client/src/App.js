@@ -3,13 +3,26 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Header from './components/Header.js'
 import Login from './components/Login.js'
+import Dashboard from './components/Dashboard.js'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom"
 
 function App() {
   return (
-    <body>
+    <Router>
       <Header />
-      <Login />
-    </body>
+      <Switch>
+        <Route exact path="/">
+          <Login />
+        </Route>
+        <Route path="/home">
+          <Dashboard />
+        </Route>
+      </Switch>
+    </Router>
     /*<div className="App">
       <Nav />
       <header className="App-header">
