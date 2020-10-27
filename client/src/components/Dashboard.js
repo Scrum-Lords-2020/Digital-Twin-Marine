@@ -45,7 +45,7 @@ class FilterBar extends Component {
 
         this.handleSearchChange = this.handleSearchChange.bind(this);
     }
-    
+
     handleSearchChange(e) {
         this.props.onSearchChange(e.target.value);
     }
@@ -82,7 +82,13 @@ class FilterBar extends Component {
 
 class CardView extends Component {
     render() {
-        const cards = VESSELS.map((vessel) => <VesselCard vessel={vessel}/>);
+        const cards = [];
+        const searchTerm = this.props.searchTerm.toLowerCase();
+        this.props.vessels.forEach((vessel) => {
+            if (vessel.name.toLowerCase().indexOf(searchTerm) === -1)
+                return;
+            cards.push(<VesselCard vessel={vessel}/>);
+        });
         return (
             <CardColumns>
                 {cards}
