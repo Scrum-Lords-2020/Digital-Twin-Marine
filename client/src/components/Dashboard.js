@@ -100,7 +100,7 @@ class CardView extends Component {
 class VesselCard extends Component {
     render() {
         return (
-            <Card style={{ width: '18rem' }}>
+            <Card>
                 <Card.Body>
                     <Card.Title>{this.props.vessel.name}</Card.Title>
                     <Card.Text>IMO #: {this.props.vessel.imo}</Card.Text>
