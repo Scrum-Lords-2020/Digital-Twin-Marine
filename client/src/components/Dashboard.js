@@ -2,28 +2,54 @@ import React, { Component } from 'react';
 import { 
     Container, 
     Form, 
-    FormControl, 
-    InputGroup, 
+    FormControl,
     Nav, 
-    Navbar, 
-    Button, 
+    Navbar,
     NavDropdown,
     Card,
     CardColumns
 } from 'react-bootstrap';
 
 class Dashboard extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {searchTerm: ""};
+
+        this.handleSearchChange = this.handleSearchChange.bind(this);
+    }
+
+    handleSearchChange(searchText) {
+        this.setState({
+            searchTerm: searchText
+        });
+    }
+
     render() {
         return(
             <Container>
-                <FilterBar />
-                <CardView vessels={VESSELS}/>
+                <FilterBar 
+                    searchTerm={this.state.searchTerm}
+                    onSearchChange={this.handleSearchChange} />
+                <CardView 
+                    vessels={VESSELS}
+                    searchTerm={this.state.searchTerm} 
+                />
             </Container>
         );
     }
 }
 
 class FilterBar extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handleSearchChange = this.handleSearchChange.bind(this);
+    }
+    
+    handleSearchChange(e) {
+        this.props.onSearchChange(e.target.value);
+    }
+
     render() {
         return (
             <Navbar>
@@ -37,12 +63,10 @@ class FilterBar extends Component {
                     </Nav.Item>
                 </Nav>
                 <Form inline>
-                    <InputGroup>
-                        <FormControl placeholder='Search' />
-                        <InputGroup.Append>
-                            <Button variant="outline-secondary">Search</Button>
-                        </InputGroup.Append>
-                    </InputGroup>
+                    <FormControl 
+                        placeholder='Search'
+                        value={this.props.searchTerm}
+                        onChange={this.handleSearchChange} />
                 </Form>
                 <Nav>
                     <NavDropdown title='Filter By' id='filterBy'>
