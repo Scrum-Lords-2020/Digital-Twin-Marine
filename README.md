@@ -11,9 +11,8 @@ To run front and backend at the same time, in the root folder run:
 
 To run just the frontend, in the root folder run:
 
-### `cd client && npm start`
+### `npm run client`
 
 And to run just the backend, from the root folder run:
 
-### `cd server && npm run server`
-
+### `npm run server`
