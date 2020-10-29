@@ -52,7 +52,6 @@ class Header extends React.Component{
 
                     
                     <Col></Col> 
-                         
                 </Row>
             </Container>
       

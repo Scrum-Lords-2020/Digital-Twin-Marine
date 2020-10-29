@@ -2,10 +2,6 @@
 
 # dependencies
 /node_modules
-<<<<<<< HEAD
-=======
-/client/node_modules
->>>>>>> fb4544bb82b8d90decb3358d09223bee156fdf5d
 /.pnp
 .pnp.js
 
@@ -14,10 +10,6 @@
 
 # production
 /build
-<<<<<<< HEAD
-=======
-client/build
->>>>>>> fb4544bb82b8d90decb3358d09223bee156fdf5d
 
 # misc
 .DS_Store
@@ -25,16 +17,10 @@ client/build
 .env.development.local
 .env.test.local
 .env.production.local
-<<<<<<< HEAD
-=======
-/server/config/config.js
->>>>>>> fb4544bb82b8d90decb3358d09223bee156fdf5d
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-<<<<<<< HEAD
-=======
 
 # IDE ignores
 *.sublime*
@@ -65,4 +51,3 @@ yarn-error.log*
 
 # User-specific stuff
 .idea/*
->>>>>>> fb4544bb82b8d90decb3358d09223bee156fdf5d
