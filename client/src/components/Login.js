@@ -32,10 +32,10 @@ class Login extends Component{
             password: password
         })
         .then((response) => {
+            /* On Success, sets default axios header with user token, and updates global
+               app state */
             const {token} = response.data;
-            // 1. Set authentication header for axios requests
             setAuthHeader(token);
-            // 2. update user state with decrypted user data
             this.handleSuccessfulLogin(jwt_decode(token));
         }).catch((error) => {
             console.log(error);
