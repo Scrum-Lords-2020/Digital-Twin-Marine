@@ -15,7 +15,7 @@ class App extends Component {
     super(props);
     this.state = {
       isLoggedIn: false,
-      userId: ""
+      user: {}
     }
   }
 
@@ -25,7 +25,7 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path="/">
-            <Login />
+            <Login user={this.state.user} isLoggedIn={this.state.isLoggedIn}/>
           </Route>
           <Route path="/home">
             <Dashboard />

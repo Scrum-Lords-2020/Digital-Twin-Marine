@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import './Login.css'
 import axios from 'axios'
+import setAuthHeader from '../utils/setAuthHeader'
 
 class Login extends Component{
     constructor(){
@@ -25,8 +26,11 @@ class Login extends Component{
             password: password
         })
         .then((response) => {
-            console.log(response);
-        }, (error) => {
+            const {token} = response.data;
+            // 1. Set authentication header for axios requests
+            setAuthHeader(token);
+            // 2. update user state with decrypted user data
+        }).catch((error) => {
             console.log(error);
         });
     }
