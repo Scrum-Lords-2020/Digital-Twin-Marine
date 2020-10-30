@@ -17,6 +17,15 @@ class App extends Component {
       isLoggedIn: false,
       user: {}
     }
+
+    this.onSuccessfulLogin = this.onSuccessfulLogin.bind(this);
+  }
+
+  onSuccessfulLogin(u) {
+    this.setState({
+      isLoggedIn: true,
+      user: u
+    });
   }
 
   render() {
@@ -25,7 +34,11 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path="/">
-            <Login user={this.state.user} isLoggedIn={this.state.isLoggedIn}/>
+            <Login 
+              user={this.state.user} 
+              isLoggedIn={this.state.isLoggedIn}
+              onSuccessfulLogin={this.onSuccessfulLogin}
+            />
           </Route>
           <Route path="/home">
             <Dashboard />

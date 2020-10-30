@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form'
 import './Login.css'
 import axios from 'axios'
 import setAuthHeader from '../utils/setAuthHeader'
+import jwt_decode from 'jwt-decode'
 
 class Login extends Component{
     constructor(){
@@ -14,6 +15,11 @@ class Login extends Component{
             password: ""
         };
         this.onSubmit = this.onSubmit.bind(this);
+        this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
+    }
+
+    handleSuccessfulLogin(user) {
+        this.props.onSuccessfulLogin(user);
     }
 
     onSubmit(e){
@@ -30,6 +36,7 @@ class Login extends Component{
             // 1. Set authentication header for axios requests
             setAuthHeader(token);
             // 2. update user state with decrypted user data
+            this.handleSuccessfulLogin(jwt_decode(token));
         }).catch((error) => {
             console.log(error);
         });
