@@ -9,6 +9,7 @@ import {
   Switch,
   Route
 } from "react-router-dom"
+import ProtectedRoute from './components/ProtectedRoute.js'
 
 class App extends Component {
   constructor(props) {
@@ -40,9 +41,11 @@ class App extends Component {
               onSuccessfulLogin={this.onSuccessfulLogin}
             />
           </Route>
-          <Route path="/home">
-            <Dashboard />
-          </Route>
+          <ProtectedRoute 
+            path="/home" 
+            isLoggedIn={this.state.isLoggedIn} 
+            component={Dashboard}
+          />
         </Switch>
       </Router>
     );

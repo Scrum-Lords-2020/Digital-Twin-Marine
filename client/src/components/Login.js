@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
@@ -6,6 +6,7 @@ import './Login.css'
 import axios from 'axios'
 import setAuthHeader from '../utils/setAuthHeader'
 import jwt_decode from 'jwt-decode'
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component{
     constructor(){
@@ -54,6 +55,9 @@ class Login extends Component{
     render(){
         return(
             <Container id="signin-container" style={{marginTop: "10%"}}>
+                {this.props.isLoggedIn &&
+                    <Redirect to='/home'/>
+                }
                 <h1>Login</h1>
                 <p>Hello! Log in with your email.</p>
                 <Row>
