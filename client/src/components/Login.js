@@ -42,18 +42,19 @@ class Login extends Component{
 
     render(){
         return(
-            <Container id="signin-container">
-                <h1 style={{textAlign: "center"}}>Sign In</h1>
+            <Container id="signin-container" style={{marginTop: "10%"}}>
+                <h1>Login</h1>
+                <p>Hello! Log in with your email.</p>
                 <Row>
                     <Form onSubmit={this.onSubmit}>
-                        <Form.Group controlID="formEmail">
+                        <Form.Group id="formEmail" controlID="formEmail">
                             <Form.Label>Email Address</Form.Label>
                             <Form.Control
                                 name="email" 
                                 type="email" 
                                 placeholder="example@gmail.com"
                                 onChange={this.onChange}
-                             />
+                            />
                         </Form.Group>
                         <Form.Group controlID="formPassword">
                             <Form.Label>Password</Form.Label>
@@ -63,13 +64,14 @@ class Login extends Component{
                                 placeholder="Password" 
                                 onChange={this.onChange}
                             />
-                            <Form.Text>Forgot Password?</Form.Text>
+                            <a href="forgotpwd.html"><Form.Text>Forgot Password?</Form.Text></a>
                         </Form.Group>
-                        <Form.Group controlID="submit">
-                            <Form.Control type="submit"></Form.Control>
+                        <Form.Group controlID="submitter">
+                            <Form.Control style={{backgroundColor: "#00315c", color: "white"}} type="submit" value="LOG IN" />
                         </Form.Group>
                     </Form>
                 </Row>
+                <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
             </Container>
         );
     }
