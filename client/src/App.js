@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Header from './components/Header.js'
@@ -11,6 +11,19 @@ import {
 } from "react-router-dom"
 
 function App() {
+
+  const [viewCards, setViewCards] = useState({
+    visible: true,
+  });
+
+  const [viewList, setViewList] = useState({
+    visible: false,
+  });
+
+  const [filterType, setFilterType] = useState({
+    filter: "none",
+  });
+
   return (
     <Router>
       <Header />
@@ -19,7 +32,13 @@ function App() {
           <Login />
         </Route>
         <Route path="/home">
-          <Dashboard />
+          <Dashboard 
+          viewCards={viewCards}
+          viewList={viewList}
+          setViewCards={setViewCards}
+          setViewList={setViewList}
+          filterType={filterType}
+          setFilterType={setFilterType}/>
         </Route>
       </Switch>
     </Router>

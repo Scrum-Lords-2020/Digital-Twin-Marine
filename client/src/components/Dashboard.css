@@ -1,0 +1,146 @@
+/*Project List utility bar*/
+#project-header{
+    border-bottom: solid 1px gray;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+#change-view{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bootstrap-override{
+    flex: 15%;
+}
+
+#search{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#search Form{
+    padding-right: 5px;
+    margin: 0;
+    flex: 10%;
+}
+#filterBy{
+    border: solid 3px  #3D4849;
+    float: left;
+    flex: 20%;
+}
+
+@media only screen and (max-width: 992px){
+    #search Form{
+        max-width: 50%;
+        margin: 0;
+        padding-right: 5px;
+    }
+    #filterBy{
+        max-width: 100%;
+    }
+}
+
+/*Pills and Pill Toggle*/
+.nav-pills{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-pills .nav-item .nav-link{
+    height: 50px;
+    width: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1px;
+    border: 3px solid #3D4849;
+}
+
+#bootstrap-override .pill-1 .nav-link
+{
+    background-color: #1743b3;
+    color: white;
+    
+}
+
+#bootstrap-override .pill-2 .nav-link
+{
+    background-color:  #1743b3;
+    color: white;
+    
+}
+
+#bootstrap-override .pill-1 .nav-link:not(.active){
+    background-color: white;
+    color: black;
+}
+
+#bootstrap-override .pill-2 .nav-link:not(.active){
+    background-color: white;
+    color: black;
+}
+
+
+/*----------------------------------------*/
+
+/*Individual Cards*/
+#preview-img{
+    width: 80%;
+    margin: auto;
+    display: block;
+    margin-bottom: 7px;
+}
+
+#vessel-info{
+    border: solid 3px #3D4849;
+    margin: 5px;
+    width: 24%;
+}
+
+#vessel-info .card-body .card-text{
+    text-align: left;
+    margin-bottom: 1px;
+}
+
+#vessel-info:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+}
+
+#card-row{
+    height: 20%;
+    clear: both;
+}
+
+/*Responsive Controls*/
+@media only screen and (max-width: 1200px){
+    #vessel-info{
+        width: 35%;
+    }
+    #card-row{
+        display: flex;
+        justify-content: center;
+    }
+
+}
+
+@media only screen and (max-width: 767px){
+    #vessel-info{
+        width: 80%;
+    }
+    #card-row{
+        display: flex;
+        justify-content: center;
+    }
+    
+}
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Poppins&display=swap');
