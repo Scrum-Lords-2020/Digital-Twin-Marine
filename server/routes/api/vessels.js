@@ -45,4 +45,24 @@ router.post("/add", (req, res) => {
     });
 });
 
+router.post("/getVessel", (req, res) => {
+    //Form validation(commented out until decide if needed)
+
+    // const { errors, isValid } = validateRegisterInput(req.body);
+
+    // //Check validation
+    // if(!isValid) {
+    //     return res.status(400).json(errors);
+    // }
+
+    Vessel.findOne({ IMO: req.body.IMO }).then(vessel => {
+        if(!vessel) {
+            return res.status(400).json({ name: "Vessel doesn't exist!" });
+        }
+        else {
+            return res.status(400).json({ name: vessel.name });
+        }
+    });
+});
+
 module.exports = router;
