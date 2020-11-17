@@ -20,10 +20,15 @@ import './Dashboard.css'
 class Dashboard extends Component {
     constructor(props) {
         super(props);
-        this.state = {searchTerm: "", filter: ""};
+        this.state = {
+            searchTerm: "", 
+            filter: "",
+            viewCards: true,
+            viewList: false
+        };
+
         this.handleFilterType = this.handleFilterType.bind(this);
         this.handleSearchChange = this.handleSearchChange.bind(this);
-      
     }
 
     handleSearchChange(searchText) {
@@ -36,7 +41,20 @@ class Dashboard extends Component {
         this.setState({
             filter: filterType
         });
+    }
 
+    setCardView = () => {
+        this.setState({
+            viewCards: true,
+            viewList: false
+        })
+    }
+
+    setListView = () => {
+        this.setState({
+            viewCards: false,
+            viewList: true
+        })
     }
 
     render() {
@@ -46,21 +64,23 @@ class Dashboard extends Component {
                 <FilterBar 
                     searchTerm={this.state.searchTerm}
                     onSearchChange={this.handleSearchChange}
-                    setViewCards={this.props.setViewCards}
                     setViewList={this.props.setViewList}
                     viewList={this.props.viewList}
                     filterType={this.state.filter}
-                    onFilterChange={this.handleFilterType} />
-                    {this.props.viewCards['visible'] && (
+                    onFilterChange={this.handleFilterType}
+                    setCardView={this.setCardView}
+                    setListView={this.setListView}
+                />
+                {this.state.viewCards && (
                 <CardView 
                     filterType={this.state.filter}
                     vessels={VESSELS}
                     searchTerm={this.state.searchTerm} 
                 />
                 )}
-                {!this.props.viewCards['visible'] && (
-                 <ListView
-                 filterType={this.state.filter}
+                {!this.state.viewCards && (
+                <ListView
+                    filterType={this.state.filter}
                     vessels={VESSELS}
                     searchTerm={this.state.searchTerm} 
                 />
@@ -74,34 +94,25 @@ class Dashboard extends Component {
 class FilterBar extends Component {
     constructor(props) {
         super(props);
+
         this.handleFilterType = this.handleFilterType.bind(this);
         this.handleSearchChange = this.handleSearchChange.bind(this);
-        
     }
+
     handleFilterType(k){
         this.props.onFilterChange(k);
     }
+
     handleSearchChange(e) {
         this.props.onSearchChange(e.target.value);
     }
-    viewCardsOnly = () =>{
-        this.props.setViewCards({
-            visible: true,
-        });
 
-        this.props.setViewList({
-            visible: false,
-        })
+    viewCardsOnly = () =>{
+        this.props.setCardView();
     }
 
     viewListOnly = () =>{
-        this.props.setViewCards({
-            visible: false,
-        });
-
-        this.props.setViewList({
-            visible: true,
-        });
+        this.props.setListView();
     }
 
    

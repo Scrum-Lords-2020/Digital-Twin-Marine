@@ -13,15 +13,6 @@ import {
 } from "react-router-dom"
 
 function App() {
-
-  const [viewCards, setViewCards] = useState({
-    visible: true,
-  });
-
-  const [viewList, setViewList] = useState({
-    visible: false,
-  });
-
   const [filterType, setFilterType] = useState({
     filter: "none",
   });
@@ -34,13 +25,10 @@ function App() {
           <Login />
         </Route>
         <Route path="/home">
-          <Dashboard 
-          viewCards={viewCards}
-          viewList={viewList}
-          setViewCards={setViewCards}
-          setViewList={setViewList}
-          filterType={filterType}
-          setFilterType={setFilterType}/>
+          <Dashboard
+            filterType={filterType}
+            setFilterType={setFilterType}
+          />
         </Route>
         <Route path="/vessel/:id" render={(props) => {
           return( <Vessel id={props.match.params.id} />)
