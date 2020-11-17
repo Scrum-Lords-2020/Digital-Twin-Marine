@@ -13,10 +13,6 @@ import {
 } from "react-router-dom"
 
 function App() {
-  const [filterType, setFilterType] = useState({
-    filter: "none",
-  });
-
   return (
     <Router>
       <Header />
@@ -25,10 +21,7 @@ function App() {
           <Login />
         </Route>
         <Route path="/home">
-          <Dashboard
-            filterType={filterType}
-            setFilterType={setFilterType}
-          />
+          <Dashboard/>
         </Route>
         <Route path="/vessel/:id" render={(props) => {
           return( <Vessel id={props.match.params.id} />)

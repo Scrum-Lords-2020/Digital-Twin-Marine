@@ -47,14 +47,14 @@ class Dashboard extends Component {
         this.setState({
             viewCards: true,
             viewList: false
-        })
+        });
     }
 
     setListView = () => {
         this.setState({
             viewCards: false,
             viewList: true
-        })
+        });
     }
 
     render() {
