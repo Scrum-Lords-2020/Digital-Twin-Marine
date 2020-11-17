@@ -64,8 +64,6 @@ class Dashboard extends Component {
                 <FilterBar 
                     searchTerm={this.state.searchTerm}
                     onSearchChange={this.handleSearchChange}
-                    setViewList={this.props.setViewList}
-                    viewList={this.props.viewList}
                     filterType={this.state.filter}
                     onFilterChange={this.handleFilterType}
                     setCardView={this.setCardView}
