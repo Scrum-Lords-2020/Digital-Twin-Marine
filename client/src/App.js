@@ -4,10 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Header from './components/Header.js'
 import Login from './components/Login.js'
 import Dashboard from './components/Dashboard.js'
+import Vessel from './components/Vessel.js'
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  useHistory
 } from "react-router-dom"
 import ProtectedRoute from './components/ProtectedRoute.js'
 
@@ -46,6 +48,9 @@ class App extends Component {
             isLoggedIn={this.state.isLoggedIn} 
             component={Dashboard}
           />
+          <Route path="/vessel/:id" render={(props) => {
+            return( <Vessel id={props.match.params.id} />)
+          }} component={Vessel}/>
         </Switch>
       </Router>
     );
