@@ -4,10 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Header from './components/Header.js'
 import Login from './components/Login.js'
 import Dashboard from './components/Dashboard.js'
+import Vessel from './components/Vessel.js'
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  useHistory
 } from "react-router-dom"
 
 function App() {
@@ -40,6 +42,9 @@ function App() {
           filterType={filterType}
           setFilterType={setFilterType}/>
         </Route>
+        <Route path="/vessel/:id" render={(props) => {
+          return( <Vessel id={props.match.params.id} />)
+        }} component={Vessel}/>
       </Switch>
     </Router>
     /*<div className="App">

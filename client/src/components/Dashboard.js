@@ -11,6 +11,7 @@ import {
     Image,
     Table
 } from 'react-bootstrap';
+import { useHistory, Link } from 'react-router-dom'
 import './Dashboard.css'
 
 
@@ -107,7 +108,7 @@ class FilterBar extends Component {
 
     render() {
         return (
-            /*
+            /* Keep this for reference
             <Navbar id="project-header">
                 <Nav style={{display: "flex", alignItems: "center", textAlign: "center", border: "solid 5px red", width: "100%"}} className="mr-auto" id="card-list">
                 <Navbar.Brand id="project-title"><b>Project List</b></Navbar.Brand>
@@ -170,20 +171,23 @@ class FilterBar extends Component {
     }
 }
 
-class ListView extends Component {
-    render(){
-     
+function ListView(props) {
+    
+        const history = useHistory();
+        const handleRowClick = (row) => {
+        history.push(`/vessel/${row}`);
+        } 
 
         let cards = [];
-        const searchTerm = this.props.searchTerm.toLowerCase();
-        let vessels = this.props.vessels;
-        if(this.props.filterType === "Name"){
+        const searchTerm = props.searchTerm.toLowerCase();
+        let vessels = props.vessels;
+        if(props.filterType === "Name"){
             vessels.sort((a,b) => (a.name > b.name) ? 1 : -1);
         }
-        if(this.props.filterType === "IMO"){
+        if(props.filterType === "IMO"){
             vessels.sort((a,b) => (a.imo > b.imo) ? 1 : -1);
         }
-        if(this.props.filterType === "Service Type"){
+        if(props.filterType === "Service Type"){
             vessels.sort((a,b) => (a.type > b.type) ? 1 : -1);
         }
         vessels.forEach((vessel) => {
@@ -192,12 +196,15 @@ class ListView extends Component {
             }
             else{
                 cards.push(
-                    <tr>
+                    
+                    <tr onClick={() => handleRowClick(vessel.imo)}>
                         <td>{vessel.name}</td>
                         <td>{vessel.imo}</td>
                         <td>{vessel.type}</td>
                         <td>{vessel.fileCount}</td>
+                        
                     </tr>
+                    
                 );
             }
 
@@ -220,7 +227,7 @@ class ListView extends Component {
                 </Table>
             </div>
         );
-    }
+
 }
 
 class CardView extends Component {
@@ -263,24 +270,38 @@ class CardView extends Component {
 }
 
 /* Needs to updated to upload vessel info from database */
-class VesselCard extends Component {
-    render() {
+function VesselCard(props) {
+    
+    const history = useHistory();
+
+    function handleClick(imo) {
+        
+        console.log("switch");
+        history.push(`/vessel/${imo}`);
+    }
         
         return (
             <Card id="vessel-info" >
+                <Link style={{textDecoration: "none"}}to={'/vessel/' + props.vessel.imo} >
                 <Card.Body>
-                    <Card.Title>{this.props.vessel.name}</Card.Title>
-                    <Image id="preview-img" src={require(`../imgs/${this.props.vessel.imgsrc}.jpg`)} fluid/>
-                    <Card.Text><u>IMO #</u>: {this.props.vessel.imo}</Card.Text>
-                    <Card.Text><u>Service Type</u>: {this.props.vessel.type}</Card.Text>
-                    <Card.Text><u>Files</u>: {this.props.vessel.fileCount} attachments</Card.Text>
+                
+                    <Card.Title>{props.vessel.name}</Card.Title>
+                    <Image id="preview-img" src={require(`../imgs/${props.vessel.imgsrc}.jpg`)} fluid/>
+                    <Card.Text><u>IMO #</u>: {props.vessel.imo}</Card.Text>
+                    <Card.Text><u>Service Type</u>: {props.vessel.type}</Card.Text>
+                    <Card.Text><u>Files</u>: {props.vessel.fileCount} attachments</Card.Text>
+                
                 </Card.Body>
+                </Link>
+                
             </Card>
         );
-    }
+    
 }
 
-const VESSELS = [
+
+
+export const VESSELS = [
     {name: 'Z', imgsrc: "mainboat", imo: 9999, type: 'Marketing', fileCount: 3},
     {name: 'Y', imgsrc: "mainboat", imo: 325234, type: 'Fun boat', fileCount: 4},
     {name: 'X', imgsrc: "mainboat", imo: 234567, type: 'Cargo', fileCount: 2},
@@ -291,7 +312,6 @@ const VESSELS = [
     {name: 'C', imgsrc: "mainboat", imo: 832341, type: 'Fishing', fileCount: 0},
     {name: 'B', imgsrc: "mainboat", imo: 832341, type: 'Fishing', fileCount: 0},
     {name: 'A', imgsrc: "mainboat", imo: 456456456, type: 'Fishing', fileCount: 0}
-    
     
 ];
 
