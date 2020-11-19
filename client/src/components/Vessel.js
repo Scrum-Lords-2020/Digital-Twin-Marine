@@ -40,7 +40,7 @@ function VesselData(props){
         <div id="vessel-data-container">
             <h4>{selected.name}</h4>
             <div id="placeholder-model">
-                <h6>Insert 3D Model</h6>
+                <iframe id="iframe-view" title="iframe-view" height="100%" width="100%" allow="fullscreen" src="https://3d.digitaltwinmarine.com/embed.html?key=ymKEl8cN"/>
             </div>
 
             
