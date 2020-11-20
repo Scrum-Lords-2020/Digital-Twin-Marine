@@ -13,9 +13,10 @@ const VesselSchema = new Schema({
     serviceType: {
         type: String,
         required: true
+    },
+    img: {
+        type: String,
     }
-    //Need entry to save the actual vessel, not sure what file type
-    //May be able to stores associated files in array here
 });
 
 module.exports = Vessel = mongoose.model("vessels", VesselSchema);
