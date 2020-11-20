@@ -13,6 +13,7 @@ import {
 } from 'react-bootstrap';
 import { useHistory, Link } from 'react-router-dom'
 import './Dashboard.css'
+import axios from 'axios'
 
 
 
@@ -58,6 +59,25 @@ class Dashboard extends Component {
     }
 
     render() {
+        var IDs = [];
+        for(let[key,value] of Object.entries(this.props.user['vessels'])){
+            IDs.push(key);
+        }
+        console.log(IDs);
+
+        var vessels = [];
+        IDs.forEach(id => {
+            axios.post('http://localhost:5000/api/vessels/getVessel',{
+                ID: id
+            })
+            .then((response) => {
+                vessels.push(response.data);
+            }).catch((error) => {
+                console.log(error);
+            });        
+        }) 
+        console.log(vessels);
+
         return(
             <div>
             <Container >
@@ -295,10 +315,10 @@ function VesselCard(props) {
                 <Card.Body>
                 
                     <Card.Title>{props.vessel.name}</Card.Title>
-                    <Image id="preview-img" src={require(`../imgs/${props.vessel.imgsrc}.jpg`)} fluid/>
+                    {/* <Image id="preview-img" src={require(`../imgs/${props.vessel.imgsrc}.jpg`)} fluid/> */}
                     <Card.Text><u>IMO #</u>: {props.vessel.imo}</Card.Text>
                     <Card.Text><u>Service Type</u>: {props.vessel.type}</Card.Text>
-                    <Card.Text><u>Files</u>: {props.vessel.fileCount} attachments</Card.Text>
+                    {/* <Card.Text><u>Files</u>: {props.vessel.fileCount} attachments</Card.Text> */}
                 
                 </Card.Body>
                 </Link>
@@ -323,5 +343,25 @@ export const VESSELS = [
     {name: 'A', imgsrc: "mainboat", imo: 456456456, type: 'Fishing', fileCount: 0}
     
 ];
+
+/* axios.post('http://localhost:5000/api/vessels/getVessel',{
+    IMO: '777'
+})
+.then((response) => {
+    var data1 = response.data;
+    tempVessels.push(data1);
+}).catch((error) => {
+    console.log(error);
+});
+
+axios.post('http://localhost:5000/api/vessels/getVessel',{
+    IMO: '778'
+})
+.then((response) => {
+    var data2 = response.data;
+    tempVessels.push(data2);
+}).catch((error) => {
+    console.log(error);
+}); */
 
 export default Dashboard;
