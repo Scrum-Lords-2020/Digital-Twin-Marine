@@ -34,7 +34,10 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Header />
+        <Header 
+          user={this.state.user} 
+          isLoggedIn={this.state.isLoggedIn}
+        />
         <Switch>
           <Route exact path="/">
             <Login 
@@ -44,7 +47,8 @@ class App extends Component {
             />
           </Route>
           <ProtectedRoute 
-            path="/home" 
+            path="/home/" 
+            user={this.state.user}
             isLoggedIn={this.state.isLoggedIn} 
             component={Dashboard}
           />

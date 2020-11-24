@@ -1,4 +1,4 @@
-import React, { Component, useState, setState, useEffect } from 'react';
+import React, { Component, useState, setState, useEffect, createRef, useRef } from 'react';
 import { 
     Container, 
     Form, 
@@ -12,6 +12,7 @@ import {
     Table
 } from 'react-bootstrap';
 import { useHistory, Link } from 'react-router-dom'
+import {ReactComponent as MenuIcon} from '../imgs/menu.svg'
 import './Dashboard.css'
 
 
@@ -58,9 +59,10 @@ class Dashboard extends Component {
     }
 
     render() {
+    
+
         return(
-            <div>
-            <Container >
+            <Container fluid style={{ minHeight: "100vh"}}>
                 <FilterBar 
                     searchTerm={this.state.searchTerm}
                     onSearchChange={this.handleSearchChange}
@@ -68,7 +70,16 @@ class Dashboard extends Component {
                     onFilterChange={this.handleFilterType}
                     setCardView={this.setCardView}
                     setListView={this.setListView}
+                    userInfo = {this.props.user}
                 />
+                <Row>
+                    <SideBar 
+                     currentPath = {this.props.location.pathname}
+                     />
+                    <SideBarResponsive />
+               
+            <Col >
+                
                 {this.state.viewCards && (
                 <CardView 
                     filterType={this.state.filter}
@@ -83,8 +94,10 @@ class Dashboard extends Component {
                     searchTerm={this.state.searchTerm} 
                 />
                 )}
+            </Col>
+                </Row>
             </Container>
-            </div>
+        
         );
     }
 }
@@ -117,37 +130,15 @@ class FilterBar extends Component {
 
     render() {
         return (
-            /* Keep this for reference
-            <Navbar id="project-header">
-                <Nav style={{display: "flex", alignItems: "center", textAlign: "center", border: "solid 5px red", width: "100%"}} className="mr-auto" id="card-list">
-                <Navbar.Brand id="project-title"><b>Project List</b></Navbar.Brand>
-                   <Nav id="bootstrap-override" variant="pills" defaultActiveKey='card'>
-                        <Nav.Item className="pill-1">
-                            <Nav.Link eventKey='card'>Card View</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item className="pill-2">
-                            <Nav.Link eventKey='list'>List View</Nav.Link>
-                        </Nav.Item>
-                    </Nav>
-                    <Nav id="search">
-                    <Form>
-                    <FormControl 
-                        placeholder='Search'
-                        value={this.props.searchTerm}
-                        onChange={this.handleSearchChange} />
-                    </Form>
-                    <NavDropdown title='Filter By' id='filterBy'>
-                        <NavDropdown.Item eventKey="name">Name</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="imo">IMO</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="type">Type</NavDropdown.Item>
-                    </NavDropdown>
-                    </Nav>
-                </Nav>
-               
-            </Navbar>
-                    */
             <Row id="project-header">
-                <Col lg={6}  id="change-view">
+                
+                  <Col xl={3} style={{padding: "0"}}>
+                        <div id="welcome-message">
+                            <p><b>Welcome {this.props.userInfo.name}!</b></p>
+                        </div>
+                     </Col>   
+                
+                <Col xl={{span: 5}}  id="change-view">
                     <Nav id="bootstrap-override" variant="pills"  defaultActiveKey='card'>
                     <Navbar.Brand id="project-title"><b>Project List</b></Navbar.Brand>
                         <Nav.Item className="pill-1" onClick={this.viewCardsOnly}>
@@ -158,7 +149,7 @@ class FilterBar extends Component {
                         </Nav.Item>
                     </Nav>
                 </Col>
-                <Col lg={6} id="search">
+                <Col xl={4} id="search">
                     <Form>
                         <FormControl 
                             placeholder='Search'
@@ -166,10 +157,10 @@ class FilterBar extends Component {
                             onChange={this.handleSearchChange} />
                     </Form>
                     <Nav  onSelect={k => this.handleFilterType(k)}>
-                    <NavDropdown title={`Filter By: ${this.props.filterType}`} id='filterBy'>
-                        <NavDropdown.Item eventKey="Name">Name</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="IMO">IMO</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="Service Type">Service Type</NavDropdown.Item>
+                    <NavDropdown title={`Filter By: ${this.props.filterType}`} id='filterBy' >
+                        <NavDropdown.Item  eventKey="Name">Name</NavDropdown.Item>
+                        <NavDropdown.Item  eventKey="IMO">IMO</NavDropdown.Item>
+                        <NavDropdown.Item  eventKey="Service Type">Service Type</NavDropdown.Item>
                     </NavDropdown>
                     </Nav>
                 </Col>
@@ -179,6 +170,71 @@ class FilterBar extends Component {
         );
     }
 }
+
+
+class SideBar extends Component {
+        constructor(props){
+            super(props);
+        }
+        render(){
+        return(
+           
+            <Col id="sidebar-full" xs={3}  style={{borderRight: "solid 5px #3D4849", margin: "0", minHeight: "100vh"}}>
+                <div style={{position: "sticky", top: "0"}}>
+              
+                    
+                    
+                    <Row className="sidebar-tab">
+                        Projects
+                    </Row>
+                    <Row id="files-tab" className="sidebar-tab">
+                        All Files
+                    </Row>
+                    <Row id="notifications-tab" className="sidebar-tab"> 
+                        Notifications
+                    </Row>
+                    <Row id="serviceRequests-tab" className="sidebar-tab"> 
+                        Service Requests
+                    </Row>
+                    <Row id="contact-tab" className="sidebar-tab"> 
+                        Contact Us
+                    </Row>
+
+                </div>
+            </Col>
+        );
+        }
+    
+    
+}
+
+function SideBarResponsive(props){
+    const openNav = () => {
+        console.log("clicked")
+        document.getElementById("mySidenav").style.width = "60%";
+        
+    }
+      
+    const closeNav = () => {
+        document.getElementById("mySidenav").style.width = "0";
+        
+    }
+
+    return(
+        <div id="container-sidebar-responsive" style={{minHeight: "100vh"}}>
+        <div id="mySidenav" className="sidebar-responsive" style={{textDecoration: "underline"}}>
+            <a  className="closebtn" onClick={closeNav}>&times;</a>
+            <a href="/home/">Projects</a>
+            <a href="#">All Files</a>
+            <a href="#">Notifications</a>
+            <a href="#">Service Requests</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <p style={{fontSize: "30px", pointer: "cursor"}} onClick={openNav}>&#9776;</p>
+        </div>
+    );
+}
+
 
 function ListView(props) {
     
@@ -221,7 +277,7 @@ function ListView(props) {
         
         return (
             <div>
-                <Table striped bordered hover size="sm">
+                <Table striped bordered hover size="sm" style={{marginTop: "5px"}}>
                     <thead>
                         <tr>
                         <th>Vessel Name</th>
@@ -291,7 +347,7 @@ function VesselCard(props) {
         
         return (
             <Card id="vessel-info" >
-                <Link style={{textDecoration: "none"}}to={'/vessel/' + props.vessel.imo} >
+                <Link style={{textDecoration: "none", color: "#3D4849"}}to={'/vessel/' + props.vessel.imo} >
                 <Card.Body>
                 
                     <Card.Title>{props.vessel.name}</Card.Title>
@@ -320,6 +376,9 @@ export const VESSELS = [
     {name: 'T', imgsrc: "mainboat", imo: 1111, type: 'Fishing', fileCount: 0},
     {name: 'C', imgsrc: "mainboat", imo: 832341, type: 'Fishing', fileCount: 0},
     {name: 'B', imgsrc: "mainboat", imo: 832341, type: 'Fishing', fileCount: 0},
+    {name: 'A', imgsrc: "mainboat", imo: 456456456, type: 'Fishing', fileCount: 0},
+    {name: 'A', imgsrc: "mainboat", imo: 456456456, type: 'Fishing', fileCount: 0},
+    {name: 'A', imgsrc: "mainboat", imo: 456456456, type: 'Fishing', fileCount: 0},
     {name: 'A', imgsrc: "mainboat", imo: 456456456, type: 'Fishing', fileCount: 0}
     
 ];

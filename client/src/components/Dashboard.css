@@ -1,3 +1,98 @@
+/* Sidebar */
+
+#welcome {
+    padding-top: 10px;
+    padding-bottom: 8%;
+    border-bottom: solid 1px gray;
+    height: 7%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#menu-icon {
+    width: 55px;
+    height: 47px; 
+    padding: 3px;
+    border: solid 3px #3D4849;
+    border-radius: 3px;
+    margin-left: 7px;
+}
+
+#welcome-message{
+
+    width: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+    margin: 0;
+}
+
+#welcome-message p{
+    font-size: 24px;
+    margin: 0;
+    text-align: left;
+}
+
+.sidebar-tab{
+    border-bottom: solid 5px #3D4849;
+    height: 60px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.sidebar-tab:hover{
+    background-color:  #00315c;
+    color: white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+}
+
+#container-sidebar-responsive{
+    display: none;
+}
+
+.sidebar-responsive{
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    background-color: white;
+    color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidebar-responsive a{
+    padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar-responsive a:hover{
+    color: #01adef;
+}
+
+.sidebar-responsive .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+}
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
 /*Project List utility bar*/
 #project-header{
     border-bottom: solid 1px gray;
@@ -10,40 +105,99 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    white-space: nowrap;
 }
 
 #bootstrap-override{
-    flex: 15%;
+    display: flex;
+
 }
 
 #search{
-    
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 #search Form{
     padding-right: 5px;
     margin: 0;
-    flex: 10%;
+    width: 60%;
 }
 #filterBy{
     border: solid 3px  #3D4849;
     float: left;
     flex: 20%;
+    color: #3D4849;
+}
+
+
+@media only screen and (max-width: 1300px){
+  #welcome-message p{
+      text-align: center;
+      width: 100%;
+  }
+  #search Form{
+    width: 40%;
+}
+}
+
+@media only screen and (max-width: 1160px){
+    #bootstrap-override{
+        width: 70%;
+    }
+    #search Form{
+        width: 30%;
+    }
+    #filterBy{
+        max-width: 100%;
+    }
+
 }
 
 @media only screen and (max-width: 992px){
+    #bootstrap-override{
+        width: 100%;
+    }
     #search Form{
-        max-width: 50%;
-        margin: 0;
-        padding-right: 5px;
+        width: 50%;
     }
     #filterBy{
         max-width: 100%;
     }
 }
+@media only screen and (max-width: 614px){
+    #sidebar-full {
+        display: none;
+    }
+    #project-header, Table, #card-row{
+        width: 100%;
+        padding: 0;
+        
+    }
+    #search Form{
+        width: 80%;
+    }
+    #container-sidebar-responsive{
+        display: block;
+        width: 10%;
+        border-right: solid 5px #3D4849;
+    }
+    .sidebar-responsive{
+        display: block;
+    }
+    #sidebar-full{
+        display: none;
+    }
+}
 
+@media only screen and (max-width: 454px){
+    #bootstrap-override .pill-1 .nav-link,
+    #bootstrap-override .pill-2 .nav-link{
+       width: 275px;
+   }
+   
+}
 /*Pills and Pill Toggle*/
 .nav-pills{
     display: flex;
@@ -63,14 +217,14 @@
 
 #bootstrap-override .pill-1 .nav-link
 {
-    background-color: #1743b3;
+    background-color: #00315c;
     color: white;
     
 }
 
 #bootstrap-override .pill-2 .nav-link
 {
-    background-color:  #1743b3;
+    background-color:   #00315c;
     color: white;
     
 }
@@ -84,6 +238,8 @@
     background-color: white;
     color: black;
 }
+
+
 
 
 /*----------------------------------------*/
@@ -105,6 +261,7 @@
 #vessel-info .card-body .card-text{
     text-align: left;
     margin-bottom: 1px;
+    color: #3D4849;
 }
 
 #vessel-info:hover{
@@ -118,7 +275,7 @@
 }
 
 /*Responsive Controls*/
-@media only screen and (max-width: 1200px){
+@media only screen and (max-width: 1358px){
     #vessel-info{
         width: 35%;
     }
