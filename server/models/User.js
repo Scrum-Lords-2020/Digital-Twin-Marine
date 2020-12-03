@@ -17,7 +17,13 @@ const UserSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
-    }
+    },
+    vessels: {
+        type: Map,
+        of: Number,
+        required: true
+    },
+    // Map for vessels and user levels, 0-highest level,2-lowest level
 });
 
 module.exports = User = mongoose.model("users", UserSchema);

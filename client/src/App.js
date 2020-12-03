@@ -45,7 +45,8 @@ class App extends Component {
           </Route>
           <ProtectedRoute 
             path="/home" 
-            isLoggedIn={this.state.isLoggedIn} 
+            isLoggedIn={this.state.isLoggedIn}
+            user={this.state.user} 
             component={Dashboard}
           />
           <Route path="/vessel/:id" render={(props) => {
