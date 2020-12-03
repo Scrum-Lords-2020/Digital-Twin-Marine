@@ -16,6 +16,9 @@ const VesselSchema = new Schema({
     },
     img: {
         type: String,
+    },
+    model: {
+        type: String,
     }
 });
 

@@ -36,7 +36,8 @@ router.post("/add", (req, res) => {
                 name: req.body.name,
                 IMO: req.body.IMO,
                 serviceType: req.body.serviceType,
-                img: req.body.img
+                img: req.body.img,
+                model: req.body.img
             });
             newVessel
                     .save()
