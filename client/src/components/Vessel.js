@@ -12,23 +12,31 @@ import {
 } from 'react-bootstrap';
 import {VESSELS} from './Dashboard.js'
 import './Vessel.css'
-
+import SidebarMain from '../components/SidebarMain'
+import SidebarResponsive from '../components/SidebarResponsive'
 
 function Vessel(props){
     console.log(props);
     return(
-        <Container style={{border: "solid 5px green"}}>
-            
-                <Row id="vessel-header">
-                    <Col md={4}><h3><u>Project Details</u></h3></Col>
-                    <Col md={{span: 4, offset: 4}}>
-                        <Button  id="request-vessel-service" >+ Request a New Service for this Vessel</Button>
-                    </Col>
-                </Row>
-                
-                <VesselData vProps={props} />
+        <Container fluid>
+            <Row>
+                <SidebarMain/>
+                <SidebarResponsive/>
+                <Col >
+                    
+                    <Row id="vessel-header">
+                        <Col md={4}><h3><u>Project Details</u></h3></Col>
+                        <Col md={{span: 4, offset: 4}}>
+                            <Button  id="request-vessel-service" >+ Request a New Service for this Vessel</Button>
+                        </Col>
+                    </Row>
+                    
+                    <VesselData vProps={props} />
            
+                </Col>
+            </Row>
         </Container>
+        
     );
 }
 

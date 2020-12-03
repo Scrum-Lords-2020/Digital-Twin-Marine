@@ -14,7 +14,8 @@ import {
 import { useHistory, Link } from 'react-router-dom'
 import {ReactComponent as MenuIcon} from '../imgs/menu.svg'
 import './Dashboard.css'
-
+import SidebarMain from '../components/SidebarMain'
+import SidebarResponsive from '../components/SidebarResponsive'
 
 
 
@@ -73,10 +74,8 @@ class Dashboard extends Component {
                     userInfo = {this.props.user}
                 />
                 <Row>
-                    <SideBar 
-                     currentPath = {this.props.location.pathname}
-                     />
-                    <SideBarResponsive />
+                    <SidebarMain/>
+                    <SidebarResponsive/>
                
             <Col >
                 
@@ -172,68 +171,7 @@ class FilterBar extends Component {
 }
 
 
-class SideBar extends Component {
-        constructor(props){
-            super(props);
-        }
-        render(){
-        return(
-           
-            <Col id="sidebar-full" xs={3}  style={{borderRight: "solid 5px #3D4849", margin: "0", minHeight: "100vh"}}>
-                <div style={{position: "sticky", top: "0"}}>
-              
-                    
-                    
-                    <Row className="sidebar-tab">
-                        Projects
-                    </Row>
-                    <Row id="files-tab" className="sidebar-tab">
-                        All Files
-                    </Row>
-                    <Row id="notifications-tab" className="sidebar-tab"> 
-                        Notifications
-                    </Row>
-                    <Row id="serviceRequests-tab" className="sidebar-tab"> 
-                        Service Requests
-                    </Row>
-                    <Row id="contact-tab" className="sidebar-tab"> 
-                        Contact Us
-                    </Row>
 
-                </div>
-            </Col>
-        );
-        }
-    
-    
-}
-
-function SideBarResponsive(props){
-    const openNav = () => {
-        console.log("clicked")
-        document.getElementById("mySidenav").style.width = "60%";
-        
-    }
-      
-    const closeNav = () => {
-        document.getElementById("mySidenav").style.width = "0";
-        
-    }
-
-    return(
-        <div id="container-sidebar-responsive" style={{minHeight: "100vh"}}>
-        <div id="mySidenav" className="sidebar-responsive" style={{textDecoration: "underline"}}>
-            <a  className="closebtn" onClick={closeNav}>&times;</a>
-            <a href="/home/">Projects</a>
-            <a href="#">All Files</a>
-            <a href="#">Notifications</a>
-            <a href="#">Service Requests</a>
-            <a href="#">Contact Us</a>
-        </div>
-        <p style={{fontSize: "30px", pointer: "cursor"}} onClick={openNav}>&#9776;</p>
-        </div>
-    );
-}
 
 
 function ListView(props) {
