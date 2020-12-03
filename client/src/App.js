@@ -1,47 +1,61 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Header from './components/Header.js'
 import Login from './components/Login.js'
 import Dashboard from './components/Dashboard.js'
+import Vessel from './components/Vessel.js'
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  useHistory
 } from "react-router-dom"
+import ProtectedRoute from './components/ProtectedRoute.js'
 
-function App() {
-  return (
-    <Router>
-      <Header />
-      <Switch>
-        <Route exact path="/">
-          <Login />
-        </Route>
-        <Route path="/home">
-          <Dashboard />
-        </Route>
-      </Switch>
-    </Router>
-    /*<div className="App">
-      <Nav />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Button>test button</Button>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-     </div>*/
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: false,
+      user: {}
+    }
+
+    this.onSuccessfulLogin = this.onSuccessfulLogin.bind(this);
+  }
+
+  onSuccessfulLogin(u) {
+    this.setState({
+      isLoggedIn: true,
+      user: u
+    });
+  }
+
+  render() {
+    return (
+      <Router>
+        <Header />
+        <Switch>
+          <Route exact path="/">
+            <Login 
+              user={this.state.user} 
+              isLoggedIn={this.state.isLoggedIn}
+              onSuccessfulLogin={this.onSuccessfulLogin}
+            />
+          </Route>
+          <ProtectedRoute 
+            path="/home" 
+            isLoggedIn={this.state.isLoggedIn}
+            user={this.state.user} 
+            component={Dashboard}
+          />
+          <Route path="/vessel/:id" render={(props) => {
+            return( <Vessel id={props.match.params.id} />)
+          }} component={Vessel}/>
+        </Switch>
+      </Router>
+    );
+  }
 }
 
 export default App;

@@ -1,0 +1,77 @@
+.container{
+    margin-top: 7px;
+    padding-top: 3px;
+}
+#vessel-header{
+    /*border: solid 5px pink;*/
+    margin: 0;    
+}
+
+#vessel-header .col-md-4{
+    padding: 0;
+}
+
+#vessel-header .col-md-4.offset-md-4{
+    padding: 0;
+}
+
+#request-vessel-service{
+    background-color: #01adef;
+    margin: 0;
+    width: 100%;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#vessel-data-container{
+    /*border: solid 5px palevioletred;*/
+    width: 100%;
+    padding: 0 0 5px 0;
+    border-bottom: solid 5px #171717;
+}
+
+
+#placeholder-model{
+    border: solid 5px lightseagreen;
+    border-radius: 3px;
+    
+    height: 375px;
+}
+
+#placeholder-model h6{
+    text-align: center;
+}
+
+
+#vessel-details{
+    /*border: solid 5px maroon;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5px;
+    width: 100%;
+    margin: 0;
+}
+
+
+#vessel-details .col-md-6 {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0;
+}
+
+#vessel-details .ml-auto{
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#fill-window{
+    margin: 0;
+    background-color: #01adef;
+    height: 42px;
+}

@@ -4,8 +4,13 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 
 const users = require("./routes/api/users");
+const vessels = require("./routes/api/vessels");
 
 const app = express();
+
+//Needed for client to interact with server
+var cors = require('cors');
+app.use(cors());
 
 app.use(
     bodyParser.urlencoded({
@@ -33,6 +38,7 @@ mongoose
 
     //Routes
     app.use("/api/users", users);
+    app.use("/api/vessels", vessels);
 
     const port = process.env.PORT || 5000;
     //*******May need to add port of host site here or something, process.env.PORT will find it?
