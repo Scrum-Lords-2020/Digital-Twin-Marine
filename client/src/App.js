@@ -26,7 +26,7 @@ class App extends Component {
 
   onSuccessfulLogin(u) {
     this.setState({
-      isLoggedIn: true,
+      isLoggedIn: false,
       user: u
     });
   }
