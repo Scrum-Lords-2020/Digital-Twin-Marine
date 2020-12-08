@@ -9,7 +9,8 @@ import {
     Card,
     Row,
     Col,
-    Table
+    Table,
+    Image
 } from 'react-bootstrap';
 import { useHistory, Link } from 'react-router-dom'
 import './Dashboard.css'
@@ -319,7 +320,7 @@ function VesselCard(props) {
             <Card.Body>
             
                 <Card.Title>{props.vessel.name}</Card.Title>
-                {/* <Image id="preview-img" src={require(`../imgs/${props.vessel.imgsrc}.jpg`)} fluid/> */}
+                <Image id="preview-img" src={props.vessel.img} fluid/>
                 <Card.Text><u>IMO #</u>: {props.vessel.IMO}</Card.Text>
                 <Card.Text><u>Service Type</u>: {props.vessel.type}</Card.Text>
                 {/* <Card.Text><u>Files</u>: {props.vessel.fileCount} attachments</Card.Text> */}
