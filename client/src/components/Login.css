@@ -8,6 +8,11 @@ p{
   font-size: 14px;
 }
 
+#login-alert{
+  margin: auto;
+  display: block;
+  width: 57%;
+}
 Form{
   margin: auto;
   display: block;
