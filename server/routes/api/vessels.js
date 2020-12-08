@@ -55,12 +55,15 @@ router.post("/getVessel", (req, res) => {
     //     return res.status(400).json(errors);
     // }
 
-    Vessel.findOne({ IMO: req.body.IMO }).then(vessel => {
+    Vessel.findById(req.body.ID).then(vessel => {
         if(!vessel) {
             return res.status(400).json({ name: "Vessel doesn't exist!" });
         }
         else {
-            return res.status(400).json({ name: vessel.name });
+            return res.status(200).json({ name: vessel.name,
+                                          IMO: vessel.IMO, 
+                                          type: vessel.serviceType
+                                        });
         }
     });
 });

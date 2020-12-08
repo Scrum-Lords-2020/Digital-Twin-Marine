@@ -1,4 +1,4 @@
-import React, { Component, useState, setState, useEffect } from 'react';
+import React, {Component} from 'react';
 import { 
     Container, 
     Form, 
@@ -7,15 +7,13 @@ import {
     Navbar,
     NavDropdown,
     Card,
-    Row, Col,
-    Image,
+    Row,
+    Col,
     Table
 } from 'react-bootstrap';
 import { useHistory, Link } from 'react-router-dom'
 import './Dashboard.css'
-
-
-
+import axios from 'axios'
 
 class Dashboard extends Component {
     constructor(props) {
@@ -24,68 +22,108 @@ class Dashboard extends Component {
             searchTerm: "", 
             filter: "",
             viewCards: true,
-            viewList: false
+            viewList: false,
+            vessels: null
         };
-
-        this.handleFilterType = this.handleFilterType.bind(this);
-        this.handleSearchChange = this.handleSearchChange.bind(this);
     }
 
-    handleSearchChange(searchText) {
+    handleSearchChange = (searchText) => {
         this.setState({
             searchTerm: searchText
         });
-    }
+    };
 
-    handleFilterType(filterType) {
+    handleFilterType = (filterType) => {
         this.setState({
             filter: filterType
         });
-    }
+    };
 
     setCardView = () => {
         this.setState({
             viewCards: true,
             viewList: false
         });
-    }
+    };
 
     setListView = () => {
         this.setState({
             viewCards: false,
             viewList: true
         });
+    };
+
+    /**
+     * Returns a promise containing an array of responses from the backend with data on the vessels that the user
+     * has access to.
+     */
+    getVessels = () => {
+        let IDs = [];
+        for(let[key,value] of Object.entries(this.props.user['vessels']))
+            IDs.push(key);
+        let promises = [];
+        IDs.forEach(id => {
+            let promise = axios.post('http://localhost:5000/api/vessels/getVessel',{
+                ID: id
+            });
+            promises.push(promise);
+        });
+        return Promise.all(promises);
+    };
+
+    /**
+     * When the dashboard is loaded it makes the asynchronous request to the backend for vessel info. Once the promise
+     * is fulfilled it sets state with the data.
+     */
+    async componentDidMount() {
+        const responses = await this.getVessels();
+        let vessels = [];
+        responses.forEach(response => {
+            vessels.push(response.data);
+        });
+        this.setState({
+            vessels: vessels
+        });
     }
 
+    /**
+     * When this function is first called it loads a blank div until the vessel data has been retrieved. Maybe should
+     * replace with a loading symbol?
+     */
     render() {
-        return(
-            <div>
-            <Container >
-                <FilterBar 
-                    searchTerm={this.state.searchTerm}
-                    onSearchChange={this.handleSearchChange}
-                    filterType={this.state.filter}
-                    onFilterChange={this.handleFilterType}
-                    setCardView={this.setCardView}
-                    setListView={this.setListView}
-                />
-                {this.state.viewCards && (
-                <CardView 
-                    filterType={this.state.filter}
-                    vessels={VESSELS}
-                    searchTerm={this.state.searchTerm} 
-                />
-                )}
-                {!this.state.viewCards && (
-                <ListView
-                    filterType={this.state.filter}
-                    vessels={VESSELS}
-                    searchTerm={this.state.searchTerm} 
-                />
-                )}
-            </Container>
-            </div>
-        );
+        if (this.state.vessels === null) {
+            return(<div></div>);
+        } else {
+            console.log(this.state.vessels);
+            return(
+                <div>
+                <Container >
+                    <FilterBar 
+                        searchTerm={this.state.searchTerm}
+                        onSearchChange={this.handleSearchChange}
+                        filterType={this.state.filter}
+                        onFilterChange={this.handleFilterType}
+                        setCardView={this.setCardView}
+                        setListView={this.setListView}
+                    />
+                    {this.state.viewCards && (
+                    <CardView 
+                        filterType={this.state.filter}
+                        vessels={this.state.vessels}
+                        searchTerm={this.state.searchTerm} 
+                    />
+                    )}
+                    {!this.state.viewCards && (
+                    <ListView
+                        filterType={this.state.filter}
+                        vessels={this.state.vessels}
+                        searchTerm={this.state.searchTerm} 
+                    />
+                    )}
+                </Container>
+                </div>
+            );
+        }
     }
 }
 
@@ -112,8 +150,6 @@ class FilterBar extends Component {
     viewListOnly = () =>{
         this.props.setListView();
     }
-
-   
 
     render() {
         return (
@@ -174,8 +210,6 @@ class FilterBar extends Component {
                     </Nav>
                 </Col>
             </Row>
-
-
         );
     }
 }
@@ -184,7 +218,7 @@ function ListView(props) {
     
         const history = useHistory();
         const handleRowClick = (row) => {
-        history.push(`/vessel/${row}`);
+            history.push(`/vessel/${row}`);
         } 
 
         let cards = [];
@@ -194,7 +228,7 @@ function ListView(props) {
             vessels.sort((a,b) => (a.name > b.name) ? 1 : -1);
         }
         if(props.filterType === "IMO"){
-            vessels.sort((a,b) => (a.imo > b.imo) ? 1 : -1);
+            vessels.sort((a,b) => (a.IMO > b.IMO) ? 1 : -1);
         }
         if(props.filterType === "Service Type"){
             vessels.sort((a,b) => (a.type > b.type) ? 1 : -1);
@@ -206,9 +240,9 @@ function ListView(props) {
             else{
                 cards.push(
                     
-                    <tr onClick={() => handleRowClick(vessel.imo)}>
+                    <tr onClick={() => handleRowClick(vessel.IMO)}>
                         <td>{vessel.name}</td>
-                        <td>{vessel.imo}</td>
+                        <td>{vessel.IMO}</td>
                         <td>{vessel.type}</td>
                         <td>{vessel.fileCount}</td>
                         
@@ -245,18 +279,18 @@ class CardView extends Component {
         let rows = [];
         let cards = [];
         let vessels = this.props.vessels;
+        
         const searchTerm = this.props.searchTerm.toLowerCase();
         if(this.props.filterType === "Name"){
             vessels.sort((a,b) => (a.name > b.name) ? 1 : -1);
         }
         if(this.props.filterType === "IMO"){
-            vessels.sort((a,b) => (a.imo > b.imo) ? 1 : -1);
+            vessels.sort((a,b) => (a.IMO > b.IMO) ? 1 : -1);
         }
         if(this.props.filterType === "Service Type"){
             vessels.sort((a,b) => (a.type > b.type) ? 1 : -1);
         }
-        
-        vessels.forEach((vessel) => {
+        vessels.forEach(vessel => {
             if (vessel.name.toLowerCase().indexOf(searchTerm) === -1){
                 return;
             }
@@ -278,33 +312,23 @@ class CardView extends Component {
     }
 }
 
-/* Needs to updated to upload vessel info from database */
 function VesselCard(props) {
-    
-    const history = useHistory();
-
-    function handleClick(imo) {
-        
-        console.log("switch");
-        history.push(`/vessel/${imo}`);
-    }
-        
-        return (
-            <Card id="vessel-info" >
-                <Link style={{textDecoration: "none"}}to={'/vessel/' + props.vessel.imo} >
-                <Card.Body>
-                
-                    <Card.Title>{props.vessel.name}</Card.Title>
-                    <Image id="preview-img" src={require(`../imgs/${props.vessel.imgsrc}.jpg`)} fluid/>
-                    <Card.Text><u>IMO #</u>: {props.vessel.imo}</Card.Text>
-                    <Card.Text><u>Service Type</u>: {props.vessel.type}</Card.Text>
-                    <Card.Text><u>Files</u>: {props.vessel.fileCount} attachments</Card.Text>
-                
-                </Card.Body>
-                </Link>
-                
-            </Card>
-        );
+    return (
+        <Card id="vessel-info" >
+            <Link style={{textDecoration: "none"}}to={'/vessel/' + props.vessel.IMO} >
+            <Card.Body>
+            
+                <Card.Title>{props.vessel.name}</Card.Title>
+                {/* <Image id="preview-img" src={require(`../imgs/${props.vessel.imgsrc}.jpg`)} fluid/> */}
+                <Card.Text><u>IMO #</u>: {props.vessel.IMO}</Card.Text>
+                <Card.Text><u>Service Type</u>: {props.vessel.type}</Card.Text>
+                {/* <Card.Text><u>Files</u>: {props.vessel.fileCount} attachments</Card.Text> */}
+            
+            </Card.Body>
+            </Link>
+            
+        </Card>
+    );
     
 }
 
