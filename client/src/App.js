@@ -17,7 +17,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: true,
+      isLoggedIn: false,
       user: {}
     }
 
@@ -26,7 +26,7 @@ class App extends Component {
 
   onSuccessfulLogin(u) {
     this.setState({
-      isLoggedIn: false,
+      isLoggedIn: true,
       user: u
     });
   }
