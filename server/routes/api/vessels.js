@@ -62,7 +62,8 @@ router.post("/getVessel", (req, res) => {
         else {
             return res.status(200).json({ name: vessel.name,
                                           IMO: vessel.IMO, 
-                                          type: vessel.serviceType
+                                          type: vessel.serviceType,
+                                          id: vessel._id
                                         });
         }
     });

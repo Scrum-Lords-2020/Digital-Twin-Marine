@@ -240,7 +240,7 @@ function ListView(props) {
             else{
                 cards.push(
                     
-                    <tr onClick={() => handleRowClick(vessel.IMO)}>
+                    <tr onClick={() => handleRowClick(vessel.id)}>
                         <td>{vessel.name}</td>
                         <td>{vessel.IMO}</td>
                         <td>{vessel.type}</td>
@@ -315,7 +315,7 @@ class CardView extends Component {
 function VesselCard(props) {
     return (
         <Card id="vessel-info" >
-            <Link style={{textDecoration: "none"}}to={'/vessel/' + props.vessel.IMO} >
+            <Link style={{textDecoration: "none"}}to={'/vessel/' + props.vessel.id} >
             <Card.Body>
             
                 <Card.Title>{props.vessel.name}</Card.Title>
