@@ -36,6 +36,7 @@ router.post("/add", (req, res) => {
                 name: req.body.name,
                 IMO: req.body.IMO,
                 serviceType: req.body.serviceType,
+                modelsrc: req.body.modelsrc,
                 img: req.body.img
             });
             newVessel
@@ -64,6 +65,8 @@ router.post("/getVessel", (req, res) => {
             return res.status(200).json({ name: vessel.name,
                                           IMO: vessel.IMO, 
                                           type: vessel.serviceType,
+                                          id: vessel._id,
+                                          modelsrc: vessel.modelsrc,
                                           img: vessel.img
                                         });
         }

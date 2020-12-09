@@ -14,6 +14,10 @@ const VesselSchema = new Schema({
         type: String,
         required: true
     },
+    modelsrc: {
+        type: String,
+        require: true
+    },
     img: {
         type: String
     }

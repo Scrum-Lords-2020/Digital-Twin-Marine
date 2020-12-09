@@ -12,41 +12,82 @@ import {
 } from 'react-bootstrap';
 // import {VESSELS} from './Dashboard.js'
 import './Vessel.css'
+import {Redirect} from 'react-router-dom';
+import axios from 'axios';
 
+class Vessel extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            vessel: null
+        };
+    }
 
-function Vessel(props){
-    console.log(props);
-    return(
-        <Container style={{border: "solid 5px green"}}>
-            
-                <Row id="vessel-header">
-                    <Col md={4}><h3><u>Project Details</u></h3></Col>
-                    <Col md={{span: 4, offset: 4}}>
-                        <Button  id="request-vessel-service" >+ Request a New Service for this Vessel</Button>
-                    </Col>
-                </Row>
+    getVessel = () => {
+        let id = this.props.id;
+        let promise = axios.post('http://localhost:5000/api/vessels/getVessel',{
+            ID: id
+        });
+        return Promise.resolve(promise);
+    };
+
+    async componentDidMount() {
+        const response = await this.getVessel();
+        let vessel = response.data;
+        this.setState({
+            vessel: vessel
+        });
+    }
+
+    render(){
+        console.log(this.props);
+        if(this.state.vessel === null){
+            return(<div></div>)
+        }
+        if(this.props.user.name === undefined){
+            return(<Redirect to={'/'} />);
+        }
+        if(this.props.user['vessels'][this.props.id] !== undefined){
+            return(
+                <Container style={{border: "solid 5px green"}}>
+                    
+                        <Row id="vessel-header">
+                            <Col md={4}><h3><u>Project Details</u></h3></Col>
+                            <Col md={{span: 4, offset: 4}}>
+                                <Button  id="request-vessel-service" >+ Request a New Service for this Vessel</Button>
+                            </Col>
+                        </Row>
+                        
+                        <VesselData vessel={this.state.vessel} />
                 
-                <VesselData vProps={props} />
-           
-        </Container>
-    );
+                </Container>
+            );
+        }
+        else{
+            return(
+                <Redirect to={'/home'} />
+            );
+        }
+    }
+
 }
 
 function VesselData(props){
-    let selected = VESSELS.find(v => v.imo==props.vProps.match.params.id);
+    console.log(props)
+    let selected = props.vessel;
 
     return(
         
         <div id="vessel-data-container">
             <h4>{selected.name}</h4>
             <div id="placeholder-model">
-                <h6>Insert 3D Model</h6>
+                <iframe id="iframe-view" title="iframe-view" height="100%" width="100%" allow="fullscreen" src={selected.modelsrc}/>
             </div>
 
             
                 <Row id="vessel-details">
                     <Col md={6} ><h5><b>Details - </b>
-                     <u><em>IMO #:</em></u> {`${selected.imo}\t`}   
+                     <u><em>IMO #:</em></u> {`${selected.IMO}\t`}   
                      <u><em>Service Type:</em></u> {`${selected.type}\t`}
                     </h5></Col>
                     <Col md={3} className="ml-auto" >

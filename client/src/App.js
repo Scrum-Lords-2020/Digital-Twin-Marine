@@ -50,8 +50,10 @@ class App extends Component {
             component={Dashboard}
           />
           <Route path="/vessel/:id" render={(props) => {
-            return( <Vessel id={props.match.params.id} />)
-          }} component={Vessel}/>
+            return( <Vessel 
+                      id={props.match.params.id}
+                      user = {this.state.user} />)
+          }}/>
         </Switch>
       </Router>
     );
