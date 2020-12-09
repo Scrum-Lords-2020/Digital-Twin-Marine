@@ -17,7 +17,11 @@ const VesselSchema = new Schema({
     modelsrc: {
         type: String,
         require: true
+    },
+    img: {
+        type: String
     }
+
     //Need entry to save the actual vessel, not sure what file type
     //May be able to stores associated files in array here
 });

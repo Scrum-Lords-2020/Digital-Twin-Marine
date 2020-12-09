@@ -36,7 +36,8 @@ router.post("/add", (req, res) => {
                 name: req.body.name,
                 IMO: req.body.IMO,
                 serviceType: req.body.serviceType,
-                modelsrc: req.body.modelsrc
+                modelsrc: req.body.modelsrc,
+                img: req.body.img
             });
             newVessel
                     .save()
@@ -65,7 +66,8 @@ router.post("/getVessel", (req, res) => {
                                           IMO: vessel.IMO, 
                                           type: vessel.serviceType,
                                           id: vessel._id,
-                                          modelsrc: vessel.modelsrc
+                                          modelsrc: vessel.modelsrc,
+                                          img: vessel.img
                                         });
         }
     });
