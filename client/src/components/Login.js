@@ -34,7 +34,7 @@ class Login extends Component{
         // get our form data from state
         const {email, password } = this.state;
         //Make login post request and check for errors
-        axios.post('http://localhost:5000/api/users/login', {
+        axios.post('/api/users/login', {
             email: email,
             password: password
         })

@@ -67,7 +67,7 @@ class Dashboard extends Component {
             IDs.push(key);
         let promises = [];
         IDs.forEach(id => {
-            let promise = axios.post('http://localhost:5000/api/vessels/getVessel',{
+            let promise = axios.post('/api/vessels/getVessel',{
                 ID: id
             });
             promises.push(promise);

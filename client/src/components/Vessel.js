@@ -27,7 +27,7 @@ class Vessel extends Component{
 
     getVessel = () => {
         let id = this.props.id;
-        let promise = axios.post('http://localhost:5000/api/vessels/getVessel',{
+        let promise = axios.post('/api/vessels/getVessel',{
             ID: id
         });
         return Promise.resolve(promise);
