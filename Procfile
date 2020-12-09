@@ -1,1 +1,1 @@
-web: npm run client
+web: npm install && npm run client
