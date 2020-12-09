@@ -4,7 +4,8 @@
 }
 #vessel-header{
     /*border: solid 5px pink;*/
-    margin: 0;    
+    margin: 0; 
+    padding-top: 3px;   
 }
 
 #vessel-header .col-md-4{

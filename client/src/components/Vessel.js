@@ -14,6 +14,8 @@ import {
 import './Vessel.css'
 import {Redirect} from 'react-router-dom';
 import axios from 'axios';
+import SidebarMain from '../components/SidebarMain';
+import SidebarResponsive from '../components/SidebarResponsive';
 
 class Vessel extends Component{
     constructor(props) {
@@ -49,17 +51,20 @@ class Vessel extends Component{
         }
         if(this.props.user['vessels'][this.props.id] !== undefined){
             return(
-                <Container style={{border: "solid 5px green"}}>
-                    
-                        <Row id="vessel-header">
-                            <Col md={4}><h3><u>Project Details</u></h3></Col>
-                            <Col md={{span: 4, offset: 4}}>
-                                <Button  id="request-vessel-service" >+ Request a New Service for this Vessel</Button>
-                            </Col>
-                        </Row>
-                        
-                        <VesselData vessel={this.state.vessel} />
-                
+                <Container fluid>
+                    <Row>
+                        <SidebarMain/>
+                        <SidebarResponsive/>
+                        <Col>
+                            <Row id="vessel-header">
+                                <Col md={4}><h3><u>Project Details</u></h3></Col>
+                                <Col md={{span: 4, offset: 4}}>
+                                    <Button  id="request-vessel-service" >+ Request a New Service for this Vessel</Button>
+                                </Col>
+                            </Row>
+                            <VesselData vessel={this.state.vessel} />
+                        </Col>
+                    </Row>
                 </Container>
             );
         }

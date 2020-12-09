@@ -5,9 +5,13 @@
     border-bottom: solid 1px lightgray;
 }
 
-.img-fluid{
-    width: 25%;
+#img-container{
+    width: 27%;
     margin-right: 10%;
+}
+
+.img-fluid{
+    width: 100%;  
 }
 
 
@@ -37,6 +41,51 @@
     border-radius: 3px;
 }
 
+#account-info{
+    border: solid 2px #171717;
+    border-radius: 3px;
+    height: 57px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: #3D4849;
+}
+
+#account-info:hover{
+    background-color: lightgray;
+}
+
+#account-dropdown .dropdown-menu .dropdown-item{
+    text-decoration: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin-left: 0; margin-right: auto;
+}
+#account-dropdown .dropdown-menu .dropdown-item:hover{
+    background-color: #01adef;
+    color: white;
+}
+
+#account-dropdown .dropdown-menu .dropdown-item svg:hover{
+    fill: red;
+}
+
+#account-dropdown:hover .dropdown-menu{
+    display: block;
+    text-decoration: none;
+}
+
+#display-info{
+    margin: 0 5px 0 3px;
+    text-align: left;
+}
+
+
+
 @media only screen and (max-width: 1577px){
     .navbar{
         width: 75%;
@@ -56,7 +105,7 @@
     .navbar{
         justify-content: center;
     }
-    .img-fluid{
+    #img-container{
         display: inline-block;
         width: 35%;
     }
