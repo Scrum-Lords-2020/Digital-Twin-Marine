@@ -3,8 +3,9 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 
-const users = require("./routes/api/users");
-const vessels = require("./routes/api/vessels");
+//const users = require("./routes/api/users");
+//const vessels = require("./routes/api/vessels");
+const routes = require("./routse");
 
 const app = express();
 
@@ -37,8 +38,9 @@ mongoose
     require("./config/passport")(passport);
 
     //Routes
-    app.use("/api/users", users);
-    app.use("/api/vessels", vessels);
+    //app.use("/api/users", users);
+    //app.use("/api/vessels", vessels);
+    app.use(routes);
 
     const port = process.env.PORT || 5000;
     //*******May need to add port of host site here or something, process.env.PORT will find it?
