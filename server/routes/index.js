@@ -1,10 +1,12 @@
 // routes/index.js
 const router = require('express').Router();
 const userRoutes = require('./api');
+const vesselRoutes = require('./api');
 const path = require('path');
 
 // API routes
 router.use('/api/users', userRoutes);
+router.use('/api/vessels'. vesselRoutes)
 
 // If no API routes are hit, send the React app
 router.use(function(req, res) {
