@@ -35,7 +35,8 @@ router.post("/add", (req, res) => {
             const newVessel = new Vessel({
                 name: req.body.name,
                 IMO: req.body.IMO,
-                serviceType: req.body.serviceType
+                serviceType: req.body.serviceType,
+                img: req.body.img
             });
             newVessel
                     .save()
@@ -62,7 +63,8 @@ router.post("/getVessel", (req, res) => {
         else {
             return res.status(200).json({ name: vessel.name,
                                           IMO: vessel.IMO, 
-                                          type: vessel.serviceType
+                                          type: vessel.serviceType,
+                                          img: vessel.img
                                         });
         }
     });
