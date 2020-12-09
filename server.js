@@ -35,7 +35,7 @@ app.use(passport.initialize());
 //Passport config
 require("./config/passport")(passport);
 
-app.use(express.static('../client/build'));
+app.use(express.static('./client/build'));
 
 //Routes
 app.use(routes);
