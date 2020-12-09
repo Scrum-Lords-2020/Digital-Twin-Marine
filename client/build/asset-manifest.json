@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.56342093.chunk.css",
+    "main.js": "/static/js/main.0a599e16.chunk.js",
+    "main.js.map": "/static/js/main.0a599e16.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e9df7fd0.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e9df7fd0.js.map",
+    "static/css/2.d9ad5f5c.chunk.css": "/static/css/2.d9ad5f5c.chunk.css",
+    "static/js/2.1d2828b2.chunk.js": "/static/js/2.1d2828b2.chunk.js",
+    "static/js/2.1d2828b2.chunk.js.map": "/static/js/2.1d2828b2.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.ca1d0f0096c4a1ec6d97690311f452e6.js": "/precache-manifest.ca1d0f0096c4a1ec6d97690311f452e6.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.d9ad5f5c.chunk.css.map": "/static/css/2.d9ad5f5c.chunk.css.map",
+    "static/css/main.56342093.chunk.css.map": "/static/css/main.56342093.chunk.css.map",
+    "static/js/2.1d2828b2.chunk.js.LICENSE.txt": "/static/js/2.1d2828b2.chunk.js.LICENSE.txt",
+    "static/media/DTM_Logo.webp": "/static/media/DTM_Logo.fb8db5f1.webp",
+    "static/media/Login.css": "/static/media/michroma-v10-latin-regular.dceb11b3.woff2",
+    "static/media/gear-icon.b791919b.svg": "/static/media/gear-icon.b791919b.svg",
+    "static/media/logout-icon.4f0bc642.svg": "/static/media/logout-icon.4f0bc642.svg",
+    "static/media/menu.a450cc10.svg": "/static/media/menu.a450cc10.svg",
+    "static/media/profile-user.7cc9a685.svg": "/static/media/profile-user.7cc9a685.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e9df7fd0.js",
+    "static/css/2.d9ad5f5c.chunk.css",
+    "static/js/2.1d2828b2.chunk.js",
+    "static/css/main.56342093.chunk.css",
+    "static/js/main.0a599e16.chunk.js"
+  ]
+}
