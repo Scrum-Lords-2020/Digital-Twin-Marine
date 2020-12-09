@@ -1,2 +1,1 @@
-web: npm install && npm run client
-server: npm run server
+web: cd client && node index.js
