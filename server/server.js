@@ -3,8 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 
-const users = require("./routes/api/users");
-const vessels = require("./routes/api/vessels");
+const routes = require('./routes/api');
 
 const app = express();
 
@@ -30,17 +29,18 @@ mongoose
     .then(() => console.log("MongoDB successfully connected"))
     .catch(err => console.log(err));
 
-    //Passport middleware
-    app.use(passport.initialize());
+//Passport middleware
+app.use(passport.initialize());
 
-    //Passport config
-    require("./config/passport")(passport);
+//Passport config
+require("./config/passport")(passport);
 
-    //Routes
-    app.use("/api/users", users);
-    app.use("/api/vessels", vessels);
+app.use(express.static('../client/build'));
 
-    const port = process.env.PORT || 5000;
-    //*******May need to add port of host site here or something, process.env.PORT will find it?
+//Routes
+app.use(routes);
 
-    app.listen(port, () => console.log(`Server up and running on port ${port}!`));
+const port = process.env.PORT || 5000;
+//*******May need to add port of host site here or something, process.env.PORT will find it?
+
+app.listen(port, () => console.log(`Server up and running on port ${port}!`));
