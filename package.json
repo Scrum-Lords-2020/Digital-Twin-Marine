@@ -3,7 +3,7 @@
         "client": "cd client && npm install && npm start",
         "server": "cd server && npm run server",
         "dev": "concurrently --names \"SERVER,CLIENT\" -c \"bgGreen,bgBlue\" \"npm run server\" \"npm run client\"",
-        "start": "cd client && npm start"
+        "start": "cd server && npm run server && cd client && npm run build"
     },
     "devDependencies": {
         "concurrently": "^5.3.0"
