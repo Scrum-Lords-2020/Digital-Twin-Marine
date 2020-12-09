@@ -2,7 +2,8 @@
 	"scripts": {
 		"client": "cd client && npm start",
 		"server": "cd server && npm run server",
-		"dev": "concurrently --names \"SERVER,CLIENT\" -c \"bgGreen,bgBlue\" \"npm run server\" \"npm run client\""
+        "dev": "concurrently --names \"SERVER,CLIENT\" -c \"bgGreen,bgBlue\" \"npm run server\" \"npm run client\"",
+        "start": "cd client && npm start"
 	},
 	"devDependencies": {
 		"concurrently": "^5.3.0"
