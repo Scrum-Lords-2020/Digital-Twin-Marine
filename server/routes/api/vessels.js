@@ -35,7 +35,9 @@ router.post("/add", (req, res) => {
             const newVessel = new Vessel({
                 name: req.body.name,
                 IMO: req.body.IMO,
-                serviceType: req.body.serviceType
+                serviceType: req.body.serviceType,
+                modelsrc: req.body.modelsrc,
+                img: req.body.img
             });
             newVessel
                     .save()
@@ -55,12 +57,18 @@ router.post("/getVessel", (req, res) => {
     //     return res.status(400).json(errors);
     // }
 
-    Vessel.findOne({ IMO: req.body.IMO }).then(vessel => {
+    Vessel.findById(req.body.ID).then(vessel => {
         if(!vessel) {
             return res.status(400).json({ name: "Vessel doesn't exist!" });
         }
         else {
-            return res.status(400).json({ name: vessel.name });
+            return res.status(200).json({ name: vessel.name,
+                                          IMO: vessel.IMO, 
+                                          type: vessel.serviceType,
+                                          id: vessel._id,
+                                          modelsrc: vessel.modelsrc,
+                                          img: vessel.img
+                                        });
         }
     });
 });
